@@ -1,0 +1,78 @@
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  background-image: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+window {
+  background-color: transparent;
+}
+
+button {
+  color: #9cdef2;
+  background-color: #292e36;
+  box-shadow: none;
+  text-shadow: none;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+button:focus {
+  color: #fab387;
+  background-color: #191919;
+}
+
+button:hover {
+  color: #fab387;
+}
+
+#shutdown {
+  background-image: image(url("./icons/shutdown-blue.png"));
+  border-top: 2px solid #61afef;
+  border-left: 2px solid #61afef;
+  border-bottom: 2px solid #61afef;
+  border-radius: 5px 0 0 5px;
+}
+
+#shutdown:focus {
+  background-image: image(url("./icons/shutdown-orange.png"));
+}
+
+#shutdown:hover {
+  background-image: image(url("./icons/shutdown-orange.png"));
+}
+
+#suspend {
+  background-image: image(url("./icons/suspend-blue.png"));
+  border-top: 2px solid #61afef;
+  border-bottom: 2px solid #61afef;
+}
+
+#suspend:focus {
+  background-image: image(url("./icons/suspend-orange.png"));
+}
+
+#suspend:hover {
+  background-image: image(url("./icons/suspend-orange.png"));
+}
+
+#reboot {
+  background-image: image(url("./icons/reboot-blue.png"));
+  border-top: 2px solid #61afef;
+  border-right: 2px solid #61afef;
+  border-bottom: 2px solid #61afef;
+  border-radius: 0 5px 5px 0;
+}
+
+#reboot:focus {
+  background-image: image(url("./icons/reboot-orange.png"));
+}
+
+#reboot:hover {
+  background-image: image(url("./icons/reboot-orange.png"));
+}
