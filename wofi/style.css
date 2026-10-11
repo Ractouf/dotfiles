@@ -1,1 +1,69 @@
-/home/francois/.config/HyprV/wofi/style/style.css
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 18px;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+window {
+}
+
+#inner-box {
+}
+
+#outer-box {
+  padding: 32px 32px 0 32px;
+  border: 2px solid #61afef;
+  border-radius: 5px;
+  background-color: #292e36;
+}
+
+#scroll {
+}
+
+#scroll scrollbar {
+  border: none;
+}
+
+#scroll scrollbar slider {
+  min-width: 4px;
+  min-height: 6px;
+  background-color: #61afef;
+  border-radius: 5px;
+  border: none;
+  margin: 2px;
+}
+
+#input {
+  padding: 8px 12px;
+  margin-bottom: 24px;
+  color: #fab387;
+  background-color: #292e36;
+  border: none;
+}
+
+#input image {
+  margin-right: 12px;
+  color: #61afef;
+}
+
+#input:focus {
+  box-shadow: none;
+}
+
+#text {
+  margin-left: 12px;
+  color: #fab387;
+}
+
+#entry {
+  margin-right: 8px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #292e36;
+}
+
+#entry:selected {
+  background-color: #191919;
+  outline: none;
+}

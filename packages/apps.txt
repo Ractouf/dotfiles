@@ -1,0 +1,15 @@
+firefox
+thunderbird
+discord
+steam
+lutris
+mpv
+nsxiv
+libreoffice-fresh
+neovim
+docker
+docker-buildx
+github-cli
+npm
+flatpak
+filezilla

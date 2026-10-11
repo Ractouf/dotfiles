@@ -1,0 +1,67 @@
+# Desktop: compositor, portals, auth
+hyprland
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+polkit-gnome
+gnome-keyring
+seahorse
+qt5-wayland
+qt6-wayland
+
+# Bar, launcher, notifications, terminal, files
+waybar
+wofi
+swaync
+kitty
+thunar
+thunar-archive-plugin
+file-roller
+gvfs
+
+# Wallpaper, clipboard, screenshots
+awww
+cliphist
+wl-clipboard
+grim
+slurp
+swappy
+hyprshot
+
+# Audio, media keys, notifications
+pipewire
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+wireplumber
+pamixer
+pavucontrol
+playerctl
+libnotify
+brightnessctl
+
+# Bluetooth, network
+bluez
+bluez-utils
+blueman
+networkmanager
+network-manager-applet
+
+# Login manager (+ sugar-candy theme deps)
+sddm
+qt5-graphicaleffects
+qt5-quickcontrols2
+
+# Shell
+starship
+fastfetch
+btop
+jq
+pacman-contrib
+
+# Theming, fonts
+ttf-jetbrains-mono-nerd
+noto-fonts-emoji
+adwaita-fonts
+papirus-icon-theme
+nwg-look
+qt6ct

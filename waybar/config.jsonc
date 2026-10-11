@@ -1,1 +1,58 @@
-/home/francois/.config/HyprV/waybar/conf/config.jsonc
+{
+  "layer": "top",
+  "position": "top",
+  "margin-top": 10,
+  "margin-right": 10,
+  "margin-left": 10,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["mpris"],
+  "modules-right": ["tray", "bluetooth", "custom/volume", "clock", "custom/updates"],
+  "mpris": {
+    "format": "  {title} - {artist}  <span color='#fab387'>[{position}/{length}]</span>",
+    "format-paused": "  {title} - {artist}  <span color='#fab387'>[{position}/{length}]</span>",
+    "player-icons": {
+      "default": "",
+      "spotify": "",
+    },
+    "status-icons": {
+      "paused": "",
+    },
+    "max-length": 60,
+    "interval": 1,
+    "ignored-players": ["firefox"],
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 6,
+  },
+  "bluetooth": {
+    "format": "{icon}",
+    "format-icons": {
+      "enabled": "[  ]",
+      "disabled": "[ 󰂲 ]",
+    },
+    "on-click": "~/.config/waybar/scripts/bluetooth-toggle.sh",
+    "tooltip-format": "Bluetooth is {status}",
+    "interval": 5,
+  },
+  "custom/volume": {
+    "exec": "~/.config/waybar/scripts/volume.sh",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "pamixer --toggle-mute",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+  },
+  "clock": {
+    "tooltip-format": "{calendar}",
+    "format-alt": "[   {:%a, %d %b %Y} ]",
+    "format": "[   {:%H:%M} ]",
+  },
+  "custom/updates": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/update-sys",
+    "on-click": "~/.config/waybar/scripts/update-sys update",
+    "interval": 300,
+    "tooltip": false,
+  },
+}

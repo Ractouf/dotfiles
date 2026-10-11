@@ -1,0 +1,4 @@
+swaylock-effects
+wlogout
+wayscriber
+sddm-sugar-candy-git

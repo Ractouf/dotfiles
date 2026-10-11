@@ -1,1 +1,90 @@
-/home/francois/.config/HyprV/waybar/style/style.css
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 16px;
+  min-height: 0;
+  font-weight: bold;
+}
+
+#waybar {
+  border-radius: 5px;
+}
+
+window#waybar {
+  background: #292e36;
+  color: #9cdef2;
+  border: 2px solid #61afef;
+}
+
+#workspaces {
+  padding-left: 3px;
+}
+
+#workspaces button {
+  padding: 6px 6px;
+  margin: 6px 3px;
+  border-radius: 5px;
+  background-color: #2e3440;
+  color: #9cdef2;
+  border: none;
+  outline: none;
+}
+
+#workspaces button.active {
+  color: #fab387;
+}
+
+#workspaces button:hover {
+  color: #fab387;
+}
+
+#tray {
+  margin: 6px;
+  padding: 10px;
+  color: #9cdef2;
+  border: 2px solid #61afef;
+  border-radius: 5px;
+  background-color: #292e36;
+}
+
+#custom-microphone,
+#network,
+#bluetooth,
+#custom-volume,
+#clock,
+#custom-updates {
+  padding: 6px 12px;
+  margin: 6px;
+  background-color: #292e36;
+  border: 2px solid #61afef;
+  border-radius: 5px;
+  color: #9cdef2;
+}
+
+#bluetooth.disabled {
+  color: #fab387;
+}
+
+#clock {
+  color: #fab387;
+}
+
+#tray:hover,
+#custom-microphone:hover,
+#network:hover,
+#bluetooth:hover,
+#custom-volume:hover,
+#clock:hover,
+#custom-updates:hover {
+  border: 2px solid #56b6c2;
+  background-color: #4c566a;
+}
+
+tooltip {
+  color: #9cdef2;
+  background-color: #3b4252;
+  border: 2px solid #56b6c2;
+}
+
+tooltip label {
+  color: #9cdef2;
+}

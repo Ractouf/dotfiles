@@ -1,1 +1,37 @@
-/home/francois/.config/HyprV/swaylock/config
+daemonize
+clock
+screenshot
+effect-blur=15x15
+effect-vignette=1:1
+color=1f1d2e80
+font="JetBrainsMono Nerd Font"
+indicator
+indicator-radius=200
+indicator-thickness=10
+line-color=61afef
+ring-color=61afef
+inside-color=292e36
+key-hl-color=fab387
+separator-color=00000000
+text-color=fab387
+text-caps-lock-color=""
+line-ver-color=61afef
+ring-ver-color=61afef
+inside-ver-color=1f1d2e
+text-ver-color=fab387
+ring-wrong-color=bf616a
+text-wrong-color=bf616a
+inside-wrong-color=1f1d2e
+inside-clear-color=1f1d2e
+text-clear-color=fab387
+ring-clear-color=9ccfd8
+line-clear-color=1f1d2e
+line-wrong-color=1f1d2e
+bs-hl-color=31748f
+grace=2
+grace-no-mouse
+grace-no-touch
+datestr=%a, %B %e
+timestr=%I:%M %p
+fade-in=0.3
+ignore-empty-password

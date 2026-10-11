@@ -1,0 +1,130 @@
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: bold;
+}
+
+/* Control center */
+
+.control-center {
+  margin: 6px 10px;
+  background: #292e36;
+  border: 2px solid #61afef;
+  border-radius: 10px;
+  color: #9cdef2;
+}
+
+/* Widget title */
+
+.widget-title {
+  color: #fab387;
+  font-size: 16px;
+}
+
+.widget-title > button {
+  background: transparent;
+  border: 2px solid #61afef;
+  border-radius: 5px;
+  color: #9cdef2;
+}
+
+.widget-title > button:hover {
+  background: #4c566a;
+  border-color: #56b6c2;
+}
+
+/* Do not disturb */
+
+.widget-dnd {
+  color: #9cdef2;
+}
+
+.widget-dnd > switch {
+  border: 2px solid #61afef;
+  border-radius: 12px;
+  background: #292e36;
+}
+
+.widget-dnd > switch:checked {
+  border-color: #fab387;
+  color: #fab387;
+}
+
+.widget-dnd > switch slider {
+  background: #9cdef2;
+  border-radius: 10px;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.widget-dnd > switch:checked slider {
+  background: #fab387;
+}
+
+/* Notification group */
+
+.widget-notifications {
+  padding: 0;
+  margin: 0;
+}
+
+.notification-group,
+.notification-group:focus,
+.notification-group:focus-within,
+.notification-group:focus-visible {
+  font-size: 12px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: rgba(41, 46, 54, 0.5);
+}
+
+.notification-group-icon {
+  color: #fab387;
+}
+
+.notification-group .notification-group-buttons > button {
+  background: transparent;
+  color: #9cdef2;
+}
+
+.notification-group .notification-group-buttons > button:hover {
+  color: #61afef;
+}
+
+.notification-group .notification-group-buttons > button:last-child {
+  color: #e06c75;
+}
+
+.notification-group .notification-group-buttons > button:last-child:hover {
+  color: #be5046;
+}
+
+/* Notification item */
+
+.notification {
+  background: #2e3440;
+  border: 2px solid #61afef;
+  border-radius: 8px;
+  color: #9cdef2;
+}
+
+.notification:hover {
+  background: #4c566a;
+  border-color: #56b6c2;
+}
+
+.notification-default-action {
+  background: transparent;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: #e06c75;
+  border-radius: 5px;
+  padding: 2px 6px;
+}
+
+.close-button:hover {
+  color: #be5046;
+}

@@ -1,0 +1,12 @@
+#!/bin/bash
+# Media key actions, bound in hypr/media-binds.lua
+
+case "$1" in
+    --inc)        pamixer -i 5 ;;
+    --dec)        pamixer -d 5 ;;
+    --toggle)     pamixer -t ;;
+    --toggle-mic) pamixer --default-source -t ;;
+    --next)       playerctl next ;;
+    --prev)       playerctl previous ;;
+    --playpause)  playerctl play-pause ;;
+esac

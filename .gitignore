@@ -1,0 +1,8 @@
+# Runtime files apps write into linked config dirs
+wayscriber/*.bak
+wayscriber/*.lock
+gtk-3.0/bookmarks
+*.bak-*
+
+# Personal wallpaper (install.sh seeds it from wallpaper.template.jpg)
+hypr/wallpaper.jpg

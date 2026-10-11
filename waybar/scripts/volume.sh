@@ -1,9 +1,9 @@
 #!/bin/bash
 
-vol_raw=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ print $2 }')
-vol_int=$(echo "$vol_raw" | awk '{printf "%.0f", $1 * 100}')
+vol_raw=$(pamixer --get-volume)
+vol_int=$(echo "$vol_raw" | awk '{printf "%.0f", $1}')
 
-is_muted=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo true || echo false)
+is_muted=$(pamixer --get-volume-human | grep -q muted && echo true || echo false)
 
 sink=$(wpctl status | awk '/Sinks:/,/Sources:/' | grep '\*' | cut -d'.' -f2- | sed 's/^\s*//; s/\[.*//')
 
@@ -30,10 +30,6 @@ else
   fg="#9cdef2"
 fi
 
-if [ "$is_muted" = true ]; then
-  tooltip="utput: $sink"
-else
-  tooltip="Output: $sink"
-fi
+tooltip="Output: $sink"
 
 echo "{\"text\":\"<span foreground='$fg'>$icon $ascii_bar $vol_int%</span>\",\"tooltip\":\"$tooltip\"}"

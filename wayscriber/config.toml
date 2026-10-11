@@ -1,0 +1,1764 @@
+# wayscriber configuration file
+# Location: ~/.config/wayscriber/config.toml
+#
+# All settings are optional. If not specified, defaults will be used.
+#
+# Every value here is a configured default: the value Wayscriber starts from.
+# Edit them in the graphical configurator (`wayscriber-configurator`, or F11
+# from the overlay) or by hand. Two things write this file: the configurator's
+# Save, and the overlay's three narrow editors — shortcut edit/unbind/reset,
+# preset save/clear, and quick-color recoloring — each of which rewrites only
+# its own key at the moment you confirm the edit and copies the previous file
+# to a timestamped .bak. Running, using, and quitting Wayscriber never changes
+# it on its own, and a preference you flip from the overlay applies to that run
+# only.
+#
+# Overlay changes to toolbar pins, minimized/pane/collapsed state, toolbar item
+# visibility/order, and board pins are direct interaction state, stored
+# separately in $XDG_DATA_HOME/wayscriber/runtime-ui.toml (normally
+# ~/.local/share/wayscriber/runtime-ui.toml). Reset those generated runtime
+# preferences from the overlay Settings panel; do not hand-edit them.
+#
+# Delete this config file only to reset authored settings to built-in defaults.
+
+# Which generation of shipped keybinding defaults this file was written
+# against. Loading never changes it; the configurator offers a reviewed update
+# when it is behind. Keep this value when editing the file.
+config_revision = 3
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# KEYBINDING SETTINGS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[keybindings]
+# Customize keyboard shortcuts for all actions
+# Format: key names with modifiers separated by +
+# Examples: "Escape", "Ctrl+Z", "Super+X", "Ctrl+Shift+T", "F10",
+# "MouseBack", "Ctrl+MouseForward", "StylusPrimary",
+# "Ctrl+K > Ctrl+C"
+# Super also accepts Meta, Logo, Win, and Windows.
+# Auxiliary mouse buttons: MouseBack, MouseForward, MouseExtra1–MouseExtra4.
+# Stylus barrel buttons: StylusPrimary, StylusSecondary.
+# Keyboard sequences use `>` between two or three chords (Ctrl+K > Ctrl+C).
+# Commas still separate independent shortcuts: F5, Ctrl+K > Ctrl+C
+# A standalone chord cannot also be a sequence prefix.
+# Left, middle, and right cannot be bound as actions.
+# Each action can have multiple keybindings (e.g., ["+", "="])
+
+# Exit overlay (or cancel current action)
+exit = ["Escape", "Ctrl+Q"]
+
+# Enter text mode
+enter_text_mode = ["T"]
+
+# Enter sticky note mode
+enter_sticky_note_mode = ["N"]
+
+# Clear all annotations on current canvas
+clear_canvas = ["E"]
+
+# Undo last annotation
+undo = ["Ctrl+Z"]
+
+# Redo last undone annotation
+redo = ["Ctrl+Shift+Z", "Ctrl+Y"]
+
+# Optional undo/redo batch actions
+undo_all = []
+redo_all = []
+undo_all_delayed = []
+redo_all_delayed = []
+
+# Duplicate currently selected annotations
+duplicate_selection = ["Ctrl+D"]
+
+# Copy/paste selected annotations
+copy_selection = ["Ctrl+Alt+C"]
+paste_selection = ["Ctrl+Alt+V"]
+
+# Select all annotations
+select_all = ["Ctrl+A"]
+
+# Reorder selected annotations within the stack
+move_selection_to_front = ["]"]
+move_selection_to_back = ["["]
+
+# Nudge selected annotations (hold Shift for a larger step)
+nudge_selection_up = ["ArrowUp"]
+nudge_selection_down = ["ArrowDown"]
+nudge_selection_left = ["ArrowLeft", "Shift+PageUp"]
+nudge_selection_right = ["ArrowRight", "Shift+PageDown"]
+
+# Nudge selected annotations (large step)
+nudge_selection_up_large = ["PageUp"]
+nudge_selection_down_large = ["PageDown"]
+
+# Move selection to horizontal edges (left/right)
+move_selection_to_start = ["Home"]
+move_selection_to_end = ["End"]
+
+# Move selection to vertical edges
+move_selection_to_top = ["Ctrl+Home"]
+move_selection_to_bottom = ["Ctrl+End"]
+
+# Delete selected annotations
+delete_selection = ["Delete"]
+
+# Adjust pen thickness
+increase_thickness = ["+", "="]
+decrease_thickness = ["-", "_"]
+
+# Adjust marker opacity (when using the marker tool)
+increase_marker_opacity = ["Ctrl+Alt+ArrowUp"]
+decrease_marker_opacity = ["Ctrl+Alt+ArrowDown"]
+
+# Tool selection shortcuts (optional; keep empty to rely on modifiers)
+select_selection_tool = ["V"]
+select_pen_tool = ["F"]
+select_marker_tool = ["H"]
+select_step_marker_tool = []
+select_eraser_tool = ["D"]
+# Toggle eraser behavior mode
+toggle_eraser_mode = ["Ctrl+Shift+E"]
+# Step the text font through drawing.font_cycle
+cycle_font_family = ["Shift+T"]
+# Open the font picker over every installed family (unbound by default;
+# also on the command palette as "Font Picker")
+open_font_picker = []
+# Step stroke smoothing up and down (unbound by default)
+increase_pen_smoothing = []
+decrease_pen_smoothing = []
+# Select the spotlight tool (unbound by default)
+select_spotlight_tool = []
+# Step the blur tool through blur/pixelate/secure/black-out (unbound by default)
+cycle_blur_style = []
+# Step the arrow style through standard/pointy/curved/double (unbound by default).
+# With arrows selected it restyles those instead of the next arrow.
+cycle_arrow_style = []
+select_line_tool = []
+select_rect_tool = []
+select_ellipse_tool = []
+select_triangle_tool = []
+select_parallelogram_tool = []
+select_rhombus_tool = []
+select_regular_polygon_tool = []
+select_freeform_polygon_tool = []
+select_arrow_tool = []
+select_blur_tool = []
+select_highlight_tool = []
+toggle_highlight_tool = ["Ctrl+Alt+H"]
+
+# Reset label counters
+reset_arrow_labels = ["Ctrl+Shift+R"]
+reset_step_markers = []
+
+# Adjust font size
+increase_font_size = ["Ctrl+Shift++", "Ctrl+Shift+="]
+decrease_font_size = ["Ctrl+Shift+-", "Ctrl+Shift+_"]
+
+# Board mode toggles (only if board.enabled = true)
+toggle_whiteboard = ["Ctrl+W"]
+toggle_blackboard = ["Ctrl+B"]
+return_to_transparent = ["Ctrl+Shift+T"]
+# Cycle overlay focus across monitors (layer-shell + xdg fullscreen fallback)
+focus_prev_output = ["Ctrl+Alt+Shift+ArrowLeft"]
+focus_next_output = ["Ctrl+Alt+Shift+ArrowRight"]
+# Board slots and board management
+board_1 = ["Ctrl+Shift+1"]
+board_2 = ["Ctrl+Shift+2"]
+board_3 = ["Ctrl+Shift+3"]
+board_4 = ["Ctrl+Shift+4"]
+board_5 = ["Ctrl+Shift+5"]
+board_6 = ["Ctrl+Shift+6"]
+board_7 = ["Ctrl+Shift+7"]
+board_8 = ["Ctrl+Shift+8"]
+board_9 = ["Ctrl+Shift+9"]
+board_prev = ["Ctrl+Shift+ArrowLeft"]
+board_next = ["Ctrl+Shift+ArrowRight"]
+board_new = ["Ctrl+Shift+N"]
+board_duplicate = ["Ctrl+Shift+D"]
+board_delete = ["Ctrl+Shift+Delete"]
+board_picker = ["Ctrl+Shift+B"]
+
+# Page navigation
+# Ubuntu/GNOME defaults avoid Ctrl+Alt workspace shortcuts (Ctrl+ArrowLeft/Right, Ctrl+PageUp/PageDown).
+page_prev = ["Ctrl+Alt+ArrowLeft", "Ctrl+Alt+PageUp"]
+page_next = ["Ctrl+Alt+ArrowRight", "Ctrl+Alt+PageDown"]
+page_new = ["Ctrl+Alt+N"]
+page_duplicate = ["Ctrl+Alt+D"]
+page_delete = ["Ctrl+Alt+Delete"]
+
+# Toggle help overlay
+toggle_help = ["F10", "F1"]
+
+# Toggle quick reference overlay
+toggle_quick_help = ["Shift+F1"]
+
+# Toggle status bar
+toggle_status_bar = ["F12", "F4"]
+
+# Show/hide the floating board/page badge (unbound; also in the command palette)
+toggle_floating_badge = []
+
+# Show/hide the bottom-right zoom chip (unbound; also in the command palette)
+toggle_zoom_chip = []
+
+# Focus mode: hide all UI chrome at once, press again to restore exactly
+# (unbound; also in the command palette)
+toggle_focus_mode = []
+
+# Toggle the unified top toolbar
+toggle_toolbar = ["F9"]
+
+# Cycle the top toolbar's display: full strip -> micro chip -> hidden
+# (F2 used to toggle the toolbars; the cycle still reaches hidden)
+cycle_toolbar_display = ["F2"]
+
+# Toggle click highlight
+toggle_click_highlight = ["Ctrl+Shift+H"]
+
+# Toggle the input HUD (on-screen keystrokes and clicks)
+toggle_input_hud = ["Ctrl+Shift+K"]
+
+# Toggle presenter mode
+toggle_presenter_mode = ["Ctrl+Shift+M"]
+
+# Toggle light passthrough mode while the overlay has focus.
+# Once passthrough is active, use compositor/global shortcuts that call
+# `wayscriber --light-toggle` for reliable control, including exit.
+toggle_light_mode = ["F6"]
+
+# Optional in-overlay toggle between light drawing and passthrough.
+# In passthrough, use `wayscriber --light-draw-toggle`
+# or `--light-draw-on` / `--light-draw-off` from a compositor shortcut.
+toggle_light_mode_drawing = []
+
+# Optional render color profile preview controls
+render_profile_next = []
+render_profile_previous = []
+render_profile_off = []
+
+# Toggle fill for fill-capable shapes
+toggle_fill = []
+
+# Optional keyboard binding to toggle radial menu at cursor
+toggle_radial_menu = []
+
+# Toggle selection properties panel
+toggle_selection_properties = ["Ctrl+Alt+P"]
+
+# Toggle context menu (keyboard alternative to right-click)
+open_context_menu = ["Shift+F10", "Menu"]
+
+# Launch the desktop configurator (requires wayscriber-configurator)
+open_configurator = ["F11"]
+
+# Open the About window (version, links, update status). Unbound by default;
+# also available from the toolbar chrome, the Settings popover, the help
+# overlay footer, and the command palette. Opening it closes the overlay,
+# because About is a normal window and the overlay draws above those.
+open_about = []
+
+# Toggle command palette
+toggle_command_palette = ["Ctrl+K", "Ctrl+Shift+P"]
+
+# Color selection shortcuts
+set_color_red = ["R"]
+set_color_green = ["G"]
+set_color_blue = ["B"]
+set_color_yellow = ["Y"]
+set_color_orange = ["O"]
+set_color_pink = ["P"]
+set_color_white = ["W"]
+set_color_black = ["K"]
+# Screen eyedropper (also available from color UIs and command palette)
+pick_screen_color = ["I"]
+
+# Screenshot shortcuts
+capture_full_screen = ["Ctrl+Alt+F"]
+capture_active_window = ["Ctrl+Shift+O"]
+capture_selection = ["Ctrl+Shift+I"]
+
+# Clipboard/File capture variants
+capture_clipboard_full = ["Ctrl+C"]
+capture_file_full = ["Ctrl+S"]
+# Unbound by default: Ctrl+Shift+C now opens the interactive picker below,
+# whose Copy action reaches the same clipboard result. Bind a chord here to get
+# the one-step region copy back.
+capture_clipboard_selection = []
+capture_file_selection = ["Ctrl+Shift+S"]
+capture_clipboard_region = ["Ctrl+6"]
+capture_file_region = ["Ctrl+Alt+6"]
+# Open the region review/action bar. Also available from the command palette.
+capture_region_interactive = ["Ctrl+Shift+C"]
+# Show a logical-pixel screen ruler without capturing anything. Available from
+# the command palette and unbound by default.
+measure_mode = []
+export_canvas_file = []
+export_canvas_clipboard = []
+export_canvas_clipboard_and_file = []
+export_board_pdf_file = []
+export_all_boards_pdf_file = []
+
+# Open the most recent capture folder
+open_capture_folder = ["Ctrl+Alt+O"]
+
+# Select a screen region and copy the text recognized in it (needs Tesseract).
+# Ctrl+A inside the selector reads the whole screen instead.
+copy_text_from_screen = ["Ctrl+Shift+X"]
+
+# Toggle frozen mode
+toggle_frozen_mode = ["Ctrl+Shift+F"]
+
+# Zoom controls
+zoom_in = ["Ctrl+Alt++", "Ctrl+Alt+="]
+zoom_out = ["Ctrl+Alt+-", "Ctrl+Alt+_"]
+reset_zoom = ["Ctrl+Alt+0"]
+toggle_zoom_lock = ["Ctrl+Alt+L"]
+refresh_zoom_capture = ["Ctrl+Alt+R"]
+
+# Preset slots (apply/save/clear).
+apply_preset_1 = ["1"]
+apply_preset_2 = ["2"]
+apply_preset_3 = ["3"]
+apply_preset_4 = ["4"]
+apply_preset_5 = ["5"]
+save_preset_1 = ["Shift+1"]
+save_preset_2 = ["Shift+2"]
+save_preset_3 = ["Shift+3"]
+save_preset_4 = ["Shift+4"]
+save_preset_5 = ["Shift+5"]
+clear_preset_1 = ["Ctrl+1"]
+clear_preset_2 = ["Ctrl+2"]
+clear_preset_3 = ["Ctrl+3"]
+clear_preset_4 = ["Ctrl+4"]
+clear_preset_5 = ["Ctrl+5"]
+
+# ───────────────────────────────────────────────────────────────────────────────
+# Keybinding Examples
+# ───────────────────────────────────────────────────────────────────────────────
+
+# Vim-style keybindings:
+#   exit = ["Escape", "Q"]
+#   clear_canvas = ["D"]
+#   undo = ["U"]
+#   redo = ["R"]
+
+# Emacs-style keybindings:
+#   exit = ["Ctrl+G"]
+#   undo = ["Ctrl+/"]
+#   redo = ["Ctrl+?"]
+#   clear_canvas = ["Ctrl+K"]
+
+# Gaming-friendly (WASD area):
+#   exit = ["Q"]
+#   toggle_help = ["H"]
+#   undo = ["Z"]
+#   redo = ["X"]
+#   clear_canvas = ["C"]
+# ═══════════════════════════════════════════════════════════════════════════════
+# SYSTEM TRAY
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[tray]
+# Main tray icon rendering strategy:
+# - "auto": theme-adaptive symbolic icon where supported, colored fallback otherwise
+# - "symbolic": always request the theme-adaptive symbolic icon
+# - "colored": always use the yellow fallback pixmaps
+icon_style = "auto"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# UPDATE NOTIFICATIONS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[updates]
+# Wayscriber never installs updates. This section only controls whether it tells
+# you that a newer release exists and points at the instructions for your
+# install method (https://wayscriber.com/docs/getting-started/updating.html).
+
+# Ask https://wayscriber.com/latest.json whether a newer release exists.
+# No Wayscriber or user identifier is sent, and the client version is suppressed.
+# Set WAYSCRIBER_DISABLE_UPDATE_CHECK=1 to override this for a single run.
+# If this file ever fails to parse, the check is skipped entirely rather than
+# falling back to "on".
+check = true
+
+# Show one desktop notification per release. With this off, the notice still
+# appears in the About window and the tray menu.
+notify = true
+
+# Hours between checks (minimum 1, maximum 720).
+interval_hours = 24
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# UI SETTINGS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[ui]
+# Overlay chrome theme
+# Options: "auto", "dark", "light" ("auto" currently resolves to dark;
+# "light" takes effect as overlay surfaces adopt the runtime theme)
+theme = "auto"
+
+# Reduce UI motion (disable animations)
+# Options: "auto", "on", "off". "on" disables UI animations. "auto" is
+# reserved for a future desktop-portal (system preference) query and
+# currently behaves like "off" (full motion).
+reduced_motion = "auto"
+
+# Show the status bar and its configured contents
+show_status_bar = true
+
+# Allow clicking status bar segments to open their related controls;
+# set false for a display-only status bar whose clicks pass through
+status_bar_interactive = true
+
+# Status-bar contents. Each item can be hidden independently. Visible items
+# keep this fixed order; narrow layouts may compact labels and temporarily
+# shed items without changing these choices. Mode badges such as
+# FROZEN/ZOOM/PAN are separate.
+# The active output appears only when an output label is available.
+active_output_badge = true
+
+# Selection dimensions appear only while one or more shapes are selected.
+show_status_selection_info = true
+
+# Show board label in the status bar
+show_status_board_badge = true
+
+# Show page counter in the status bar
+show_status_page_badge = true
+
+# Show the current color dot
+show_status_color = true
+
+# Show the active tool name
+show_status_tool = true
+
+# Show the active tool size as a separate segment
+show_status_size = true
+
+# Show transient text/highlight context indicators when applicable
+show_status_context_indicators = true
+
+# Show a clickable status-bar hint chip (e.g. "F9 Toolbar") while every
+# toolbar surface is hidden; set false if you run toolbar-less on purpose
+show_toolbar_hint = true
+
+# Show the Help shortcut segment
+show_status_help = true
+
+# Show the About/version segment
+show_status_about = true
+
+# Master visibility for the floating board/page badge. The
+# toggle_floating_badge palette/keyboard action flips it for the current run
+# only; this is the default it starts from.
+show_floating_badge = true
+
+# Also show the floating board/page badge when the status bar is visible
+show_floating_badge_always = false
+
+# Show a "FROZEN" badge when frozen mode is active
+show_frozen_badge = false
+
+# Status bar position
+# Options: "top-left", "top-right", "bottom-left", "bottom-right"
+status_bar_position = "bottom-left"
+
+# Filter help overlay sections based on enabled features
+help_overlay_context_filter = true
+
+# Show compositor capabilities warning toast each time the overlay starts
+show_capabilities_warning = true
+
+# Show automatic first-run guidance, discovery tips, and shortcut coaching.
+# The guided tour remains available manually when this is false.
+show_onboarding_hints = true
+
+# Show rectangle and ellipse preview dimensions in logical board pixels.
+# This is separate from capture.region.show_size_readout.
+show_shape_size_readout = true
+
+# Command palette action toast duration (ms)
+command_palette_toast_duration_ms = 1500
+
+# Preferred monitor for GNOME fallback (xdg-shell) overlay. Case-insensitive match
+# against monitor identity; leave empty to use the current/first monitor.
+#preferred_output = "eDP-1"
+
+# Enable output-cycling shortcuts on layer-shell compositors.
+multi_monitor_enabled = true
+
+# Request fullscreen for the GNOME fallback overlay. Disable if fullscreen appears opaque.
+#xdg_fullscreen = false
+
+# Behavior when GNOME fallback (xdg-shell) loses keyboard focus.
+# "stay" (default on Ubuntu/GNOME) keeps it open. "exit" closes the overlay.
+#xdg_focus_loss_behavior = "exit"
+
+# Mouse button that toggles radial menu
+# Options: "middle", "right", "disabled"
+radial_menu_mouse_binding = "middle"
+
+# ───────────────────────────────────────────────────────────────────────────────
+# Floating Toolbar (F9 toggles; F2 cycles full -> micro -> hidden)
+# ───────────────────────────────────────────────────────────────────────────────
+
+[ui.toolbar]
+# Toolbar frontend: "auto" uses GTK4-rendered toolbars on compositors where
+# the bars get their own layer surfaces (Hyprland, KWin, Wayfire, ...) and
+# the built-in toolbars everywhere else (GNOME, forced-inline, builds
+# without the toolbar-gtk feature). "gtk" requests GTK4 explicitly (warns
+# and falls back when unsupported); "builtin" always uses the built-in bars.
+# Env override: WAYSCRIBER_TOOLBAR_BACKEND
+backend = "auto"
+
+# Toolbar layout preset: "simple", "regular" (the default), or "advanced"
+# "full" is accepted as a legacy alias for "regular"
+layout_mode = "regular"
+
+# Optional per-mode overrides for toolbar sections
+# Use true/false to override a section; omit to use the mode default.
+#
+# [ui.toolbar.mode_overrides.simple]
+# show_presets = false
+# show_actions_section = true
+# show_actions_advanced = false
+# show_zoom_actions = true
+# show_pages_section = true
+# show_boards_section = true
+# show_step_section = false
+# show_text_controls = true
+#
+# [ui.toolbar.mode_overrides.regular] # Full mode overrides
+# show_presets = true
+# show_actions_section = true
+# show_actions_advanced = false
+# show_zoom_actions = true
+# show_pages_section = true
+# show_boards_section = true
+# show_step_section = false
+# show_text_controls = true
+#
+# [ui.toolbar.mode_overrides.advanced] # Legacy mode overrides
+# show_presets = true
+# show_actions_section = true
+# show_actions_advanced = true
+# show_zoom_actions = true
+# show_pages_section = true
+# show_boards_section = true
+# show_step_section = true
+# show_text_controls = true
+
+# Show top toolbar on startup (pinned)
+# These are the authored defaults. The pin buttons and the toolbar toggle
+# keybinding update the remembered pinned state in runtime-ui.toml, which
+# overrides these values; editing a value again takes over from that saved
+# choice
+top_pinned = true
+
+# Start the top toolbar minimized to its edge restore tab
+# The minimize button updates this; a minimized bar always leaves a
+# clickable tab on screen to bring it back
+top_minimized = false
+
+# Display form of the top strip restored at startup: "full" or "micro"
+# (one 44px round chip: active tool glyph + a ring in the current color).
+# This is the authored default. The cycle keybinding and the micro chip
+# persist their choice to runtime-ui.toml instead, and editing this value
+# again takes over from that saved choice. A cycle-hidden strip is
+# runtime-only and comes back per top_pinned
+top_display_mode = "full"
+
+# The unified top toolbar is the only layout. Drawing properties live in
+# the top strip's contextual style pill; canvas management in the status
+# HUD, board picker, and Canvas overflow popover; Session/Settings in
+# popovers from the top strip's overflow menu. Older keys such as
+# side_layout, side_pinned, side_minimized, side_active_pane,
+# collapsed_sections, side_offset(_x), show_settings_section, and the
+# retired items.order lists (side_sections, actions, pages, boards,
+# presets, tool_options, sessions) remain readable and are preserved on
+# save, but they no longer affect the running overlay.
+
+# Use icons instead of text labels in toolbars
+# Icons are more compact; text labels are more explicit
+use_icons = true
+
+# Scale factor for toolbar UI (icons + layout)
+scale = 1.0
+
+# Show extended color palette in top toolbar
+# When enabled, displays additional color options beyond the basic 8
+show_more_colors = false
+
+# Show basic actions (undo/redo/clear) in the Canvas overflow popover
+show_actions_section = true
+
+# Show advanced actions (undo all, delay, freeze, etc.)
+show_actions_advanced = false
+
+# Show zoom actions (zoom in/out/reset/lock)
+show_zoom_actions = true
+
+# When the bottom-right zoom chip is shown
+# Options: "always" (default; the chip is also the mouse entry point for
+# zooming), "while-zoomed" (only while zoom is active — keeps the corner
+# clean at 100%; zooming still starts via keyboard/scroll bindings)
+zoom_chip_display = "always"
+
+# Master visibility for the bottom-right zoom chip. The toggle_zoom_chip
+# palette/keyboard action flips it for the current run only; this is the
+# default it starts from.
+show_zoom_chip = true
+
+# Show page controls section (prev/next/new/dup/del)
+show_pages_section = true
+
+# Show board controls section (prev/next/new/del)
+show_boards_section = true
+
+# Show presets island in the top strip
+show_presets = true
+
+# Show step undo/redo section
+show_step_section = false
+
+# Keep text controls visible even when text is inactive
+show_text_controls = true
+
+# Show timing delay sliders in the Canvas popover's Step section
+# Allows configuring delayed undo/redo all timing
+show_delay_sliders = false
+
+# Keep the marker opacity control available in the style pill even when the marker tool isn't active
+# Enable to keep marker transparency control visible at all times
+show_marker_opacity_section = false
+
+# Enable context-aware UI that shows/hides controls based on the active tool
+# When enabled, only relevant controls appear (e.g., no color picker for eraser)
+# Disable to always show all controls regardless of the active tool
+context_aware_ui = true
+
+# Show preset action toast notifications on apply/save/clear
+show_preset_toasts = true
+
+# Dim the top strip after ~4 seconds without drawing. Set false to keep
+# the bar fully visible (accessibility).
+idle_fade = true
+
+# Show cursor tool preview bubble near the pointer
+show_tool_preview = false
+
+# Authored default top-toolbar offsets (layer-shell/inline). Dragging the
+# strip persists its position to runtime-ui.toml instead of rewriting these;
+# editing these values again takes over from the saved drag.
+# Horizontal offset for the top toolbar
+top_offset = 0.0
+# Vertical offset for the top toolbar (move top bar down/up)
+top_offset_y = 0.0
+
+# Force inline toolbars even when layer-shell is available
+force_inline = false
+
+# Hold this modifier chord while clicking a bindable toolbar control to edit
+# its shortcut. The captured chord applies immediately and is written back to
+# that action's [keybindings] entry here, with the previous file copied to a
+# timestamped .bak. A chord another action already owns is refused and nothing
+# is written. Values: "ctrl_shift", "ctrl_alt", "shift_alt",
+# "ctrl_shift_alt", or "disabled".
+rebind_modifier = "ctrl_shift"
+
+[ui.toolbar.items]
+# Checked in the configurator means shown; IDs listed here are hidden.
+# The screenshot toolbar button is hidden by default.
+# Copy text (OCR) is hidden by a built-in baseline instead of by this list,
+# so upgrading a config written before it existed cannot reveal it; enable it
+# through toolbar customization, which records an entry in `shown` below.
+# Section-level ids (side.group.*) act as explicit overrides that beat the
+# layout-mode baseline and survive mode switches.
+hidden = [
+  "top.utility.screenshot",
+]
+
+# IDs explicitly shown, overriding the layout-mode baseline (for example
+# keeping presets visible in simple mode). The overlay updates this as you
+# toggle sections.
+shown = []
+
+[ui.toolbar.items.order]
+# Optional order overrides. Empty lists use the built-in order.
+# Known IDs omitted from a non-empty list are appended in the default order.
+# Historically named side.* item IDs still customize top-toolbar controls
+# (Canvas/Session/Settings popovers, section visibility); do not rename them.
+top_tools = [
+  "top.tool.select",
+  "top.tool.pen",
+  "top.tool.marker",
+  "top.tool.step-marker",
+  "top.tool.eraser",
+  "top.tool.line",
+  "top.tool.rect",
+  "top.tool.ellipse",
+  "top.tool.arrow",
+  "top.tool.blur",
+]
+top_controls = [
+  "top.utility.text",
+  "top.utility.sticky-note",
+  "top.utility.screenshot",
+  "top.utility.ocr",
+  "top.utility.clear-canvas",
+  "top.utility.highlight",
+]
+
+# ───────────────────────────────────────────────────────────────────────────────
+# Status Bar Styling
+# ───────────────────────────────────────────────────────────────────────────────
+
+[ui.status_bar_style]
+# Font size for status bar text
+font_size = 21.0
+
+# Padding around status bar text
+padding = 15.0
+
+# Background color [R, G, B, A] (0.0-1.0 range)
+# Default: semi-transparent black (85% opaque for visibility)
+bg_color = [0.0, 0.0, 0.0, 0.85]
+
+# Text color [R, G, B, A] (0.0-1.0 range)
+# Default: white
+text_color = [1.0, 1.0, 1.0, 1.0]
+
+# Color indicator dot radius
+dot_radius = 6.0
+
+# ───────────────────────────────────────────────────────────────────────────────
+# Click Highlight (visual feedback for mouse clicks)
+# ───────────────────────────────────────────────────────────────────────────────
+
+[ui.click_highlight]
+# Start with the highlight effect enabled when the overlay launches
+enabled = false
+
+# Show a persistent ring while the highlight tool is active
+show_on_highlight_tool = false
+
+# Radius of the highlight circle in pixels (16 - 160)
+radius = 24.0
+
+# Outline thickness in pixels (1 - 12)
+outline_thickness = 4.0
+
+# Highlight lifetime in milliseconds (150 - 1500)
+duration_ms = 750
+
+# Fill color [R, G, B, A]
+fill_color = [1.0, 0.8, 0.0, 0.35]
+
+# Outline color [R, G, B, A]
+outline_color = [1.0, 0.6, 0.0, 0.9]
+
+# Use current pen color for highlight fill/outline (alpha still comes from above colors)
+# Note: active highlights update immediately when the pen color changes
+use_pen_color = true
+
+# Force-enable click highlights when entering light mode.
+# Set false to keep the current click highlight state on light mode entry.
+force_in_light_mode = true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Input HUD (on-screen keystrokes and clicks, for demos and screencasts)
+# ─────────────────────────────────────────────────────────────────────────────
+
+[ui.input_hud]
+# Start with the input HUD enabled when the overlay launches
+enabled = false
+
+# Input source:
+#   "auto"    - system-wide capture when available, else overlay-only (default)
+#   "overlay" - never reads /dev/input; shows only what Wayscriber receives
+#   "system"  - requires system-wide capture; falls back to overlay with a
+#               warning toast. Needs a build with the `input-monitor` feature
+#               and read access to /dev/input (usually `input` group
+#               membership). System mode sees every keystroke on the seat,
+#               including passwords typed into other apps.
+mode = "auto"
+
+# Screen anchor for the chip row: top-left | top-center | top-right |
+# center-left | center | center-right |
+# bottom-left | bottom-center | bottom-right
+position = "bottom-center"
+
+# Show mouse buttons and scroll wheel
+show_mouse = true
+
+# Show taps of bare modifiers (Ctrl, Shift, Alt, Super) as their own chips
+show_bare_modifiers = true
+
+# How long a chip stays after its last press, before fading (200 - 30000 ms)
+display_ms = 1600
+
+# Fade-out duration (0 - 5000 ms)
+fade_ms = 350
+
+# Maximum number of simultaneous chips (1 - 16)
+max_entries = 6
+
+# Coalesce immediate repeats into a single chip with a xN counter
+combine_repeats = true
+
+# Chip label size in points (6 - 72)
+font_size = 18.0
+
+[ui.context_menu]
+# Enable right-click / keyboard context menus
+enabled = true
+
+# ───────────────────────────────────────────────────────────────────────────────
+# Presenter Mode
+# ───────────────────────────────────────────────────────────────────────────────
+
+[presenter_mode]
+# Hide UI chrome while presenting
+hide_status_bar = true
+hide_toolbars = true
+hide_tool_preview = true
+
+# What hide_toolbars does to the top strip: "hidden" removes it entirely,
+# "micro" collapses it to the 44px micro chip
+toolbar_mode = "hidden"
+
+# Close the help overlay when entering presenter mode
+close_help_overlay = true
+
+# Force click highlights on while presenting
+enable_click_highlight = true
+
+# Force the input HUD on while presenting
+enable_input_hud = false
+
+# Tool behavior while presenting:
+# "keep" / "force-highlight" / "force-highlight-locked"
+tool_behavior = "force-highlight"
+
+# Show enter/exit toast notifications
+show_toast = true
+
+# Light passthrough mode requires layer-shell support:
+# - toggle_light_mode enters a minimal click-through overlay while Wayscriber has focus.
+# - wayscriber --light-toggle is the reliable compositor/global toggle once passthrough is active.
+#   Do not rely on the in-overlay F6 binding to exit after input is passed through.
+# - wayscriber --light-draw-toggle switches between drawing and passthrough.
+# - wayscriber --light-draw-on / --light-draw-off support press/release shortcuts.
+
+# ───────────────────────────────────────────────────────────────────────────────
+# Help Overlay Styling (Press F10 to toggle)
+# ───────────────────────────────────────────────────────────────────────────────
+
+[ui.help_overlay_style]
+# Font size for help overlay text
+font_size = 14.0
+
+# Font family for help overlay text (comma-separated fallback list)
+font_family = "Noto Sans, DejaVu Sans, Liberation Sans, Sans"
+
+# Line height for help text
+line_height = 22.0
+
+# Padding around help box
+padding = 32.0
+
+# Background color [R, G, B, A] (0.0-1.0 range)
+# Default: deep slate (higher contrast than status bar)
+bg_color = [0.09, 0.1, 0.13, 0.92]
+
+# Border color [R, G, B, A] (0.0-1.0 range)
+# Default: muted steel
+border_color = [0.33, 0.39, 0.52, 0.88]
+
+# Border line width
+border_width = 2.0
+
+# Text color [R, G, B, A] (0.0-1.0 range)
+# Default: near-white
+text_color = [0.95, 0.96, 0.98, 1.0]
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# BOARD SETTINGS (Named Boards + Backgrounds)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[boards]
+# Maximum number of boards allowed
+max_count = 9
+
+# Auto-create boards when switching to an empty slot
+auto_create = true
+
+# Show board name/slot in the status bar
+show_board_badge = true
+
+# Allow panning on solid-color boards with Space + left-drag
+pan_enabled = true
+
+# Show the pan hint in the status bar or as a floating badge
+show_pan_badge = true
+
+# Deprecated no-op, kept so older files still load without a warning.
+# Board renames, recolors, additions, and deletions belong to the running
+# session; the [[boards.items]] list below is the set of templates a new
+# session starts from. This key is ignored and will be removed.
+persist_customizations = true
+
+# Default board id on startup
+default_board = "transparent"
+
+[[boards.items]]
+id = "transparent"
+name = "Overlay"
+background = "transparent"
+persist = true
+
+[presets.slot_2]
+tool = "pen"
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+eraser_kind = "Circle"
+eraser_mode = "brush"
+marker_opacity = 0.32
+fill_enabled = false
+font_size = 32.0
+text_background_enabled = false
+arrow_length = 20.0
+arrow_angle = 26.0
+arrow_head_at_end = true
+polygon_sides = 5
+show_status_bar = true
+
+[[boards.items]]
+id = "whiteboard"
+name = "Whiteboard"
+background = { rgb = [0.992, 0.992, 0.992] }
+# Tuned black #241F31; the built-in default bit-matches the "black" quick color
+default_pen_color = { rgb = [0.141, 0.122, 0.192] }
+auto_adjust_pen = true
+
+[presets.slot_2.tool_settings]
+eraser_size = 12.0
+
+[[boards.items]]
+id = "blackboard"
+name = "Blackboard"
+background = { rgb = [0.067, 0.067, 0.067] }
+default_pen_color = { rgb = [1.0, 1.0, 1.0] }
+auto_adjust_pen = true
+
+[presets.slot_2.tool_settings.pen]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[[boards.items]]
+id = "blueprint"
+name = "Blueprint"
+background = { rgb = [0.063, 0.125, 0.251] }
+default_pen_color = { rgb = [0.902, 0.945, 1.0] }
+auto_adjust_pen = true
+
+[presets.slot_2.tool_settings.line]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[[boards.items]]
+id = "corkboard"
+name = "Corkboard"
+background = { rgb = [0.420, 0.294, 0.165] }
+default_pen_color = { rgb = [0.969, 0.890, 0.784] }
+auto_adjust_pen = true
+
+[presets.slot_2.tool_settings.rect]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+# ───────────────────────────────────────────────────────────────────────────────
+# Color Theme Examples
+# ───────────────────────────────────────────────────────────────────────────────
+
+# Chalkboard Theme (green board):
+# [[boards.items]]
+# id = "chalkboard"
+# name = "Chalkboard"
+# background = { rgb = [0.11, 0.18, 0.13] }
+# default_pen_color = { rgb = [0.95, 0.95, 0.8] }
+# auto_adjust_pen = true
+
+# Sepia Theme (vintage whiteboard):
+# [[boards.items]]
+# id = "sepia"
+# name = "Sepia"
+# background = { rgb = [0.96, 0.93, 0.86] }
+# default_pen_color = { rgb = [0.29, 0.23, 0.18] }
+# auto_adjust_pen = true
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# RENDER COLOR PROFILES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[render_profiles]
+# Optional profile id to preview on startup
+# active = "print"
+# Apply profiles to board backgrounds, annotations, and canvas-space previews
+apply_to_canvas = true
+# Apply profiles to screen-space UI chrome, toolbars, popups, and status text
+apply_to_ui = true
+# Accepted values: "off", "active", "profile".
+# Explicit canvas PNG export applies this selector to persisted canvas content.
+export = "off"
+
+[presets.slot_2.tool_settings.ellipse]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+# Used only when export = "profile".
+# export_profile = "print"
+
+# Render profiles remap final rendered pixels by exact RGB match. Alpha is
+# preserved, and colors not listed here are unchanged.
+#
+# [[render_profiles.profiles]]
+# id = "print"
+# name = "Print"
+# mappings = [
+#   { from = "#000000", to = "#FFFFFF" },
+#   { from = "#FFFFFF", to = "#000000" },
+#   { from = "#FFFF00", to = "#8B4513" },
+#   { from = "#00FF00", to = "#006400" },
+# ]
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SESSION PERSISTENCE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[session]
+# Enable persistence per mode (default to true)
+# Off for transparent: our erase keybind cycles daemon-toggle to wipe the
+# canvas, which respawns the overlay process; persistence would just restore
+# the old drawing on respawn and defeat the erase key.
+persist_transparent = false
+persist_whiteboard = true
+persist_blackboard = true
+
+# Persist undo/redo history alongside shapes (set false to save only visible drawings)
+persist_history = true
+
+# Restore pen colour/thickness/font size (and arrow placement) between runs.
+# When true, the last-used tool state overrides config defaults at startup.
+# Set to false if you always want to use the values above (e.g., arrow head placement).
+restore_tool_state = true
+
+# Autosave session data while the overlay is running
+autosave_enabled = true
+
+# Save after this much idle time following a change (ms)
+autosave_idle_ms = 5000
+
+# Maximum interval between saves while dirty (ms)
+autosave_interval_ms = 45000
+
+# Backoff before retrying autosave after a failure (ms)
+autosave_failure_backoff_ms = 5000
+
+# Storage location: "auto" (XDG data dir), "config" (next to config), or "custom"
+storage = "auto"
+
+# CLI note: --session-file PATH bypasses this storage directory for that run and
+# saves to exactly PATH, without creating missing parent directories.
+# The overlay Session panel can Open, Save As, inspect, clear, and reopen recent
+# named sessions. Save As appends .wayscriber-session when no extension is used.
+# The configurator Session tab can rename/reveal/forget catalog entries, and can
+# duplicate, move, or clear inactive session files when no overlay/daemon is running.
+
+# Store separate sessions per monitor (set false to reuse one file per display)
+per_output = true
+
+# When storage = "custom", set the directory here (supports ~ expansion)
+# custom_directory = "/path/to/persistent/sessions"
+
+# Clamp runaway files by limiting shapes per frame
+max_shapes_per_frame = 10000
+
+# Optional cap for serialized undo history (defaults to runtime undo limit)
+# max_persisted_undo_depth = 200
+
+# Maximum session file size (in megabytes); image paste and autosave warn near this cap
+max_file_size_mb = 50
+
+# Compression mode: "auto", "on", or "off"
+compress = "auto"
+
+# For compress = "auto": minimum file size (KiB) before gzip is used
+auto_compress_threshold_kb = 100
+
+# Number of rotated backups to retain (0 disables backups)
+backup_retention = 1
+
+[presets.slot_2.tool_settings.arrow]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[presets.slot_3]
+tool = "pen"
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+eraser_kind = "Circle"
+eraser_mode = "brush"
+marker_opacity = 0.32
+fill_enabled = false
+font_size = 32.0
+text_background_enabled = false
+arrow_length = 20.0
+arrow_angle = 26.0
+arrow_head_at_end = true
+polygon_sides = 5
+show_status_bar = true
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DRAWING SETTINGS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[drawing]
+# Default pen color
+# Options: "red", "green", "blue", "yellow", "orange", "pink", "white", "black"
+# (named colors resolve to the tuned quick color palette, e.g. "red" = #F5333F)
+# Or #RRGGBB hex: "#FFB3BA", or #RRGGBBAA for alpha: "#FFB3BA80"
+# Or RGB array: [255, 0, 0], or RGBA array: [255, 0, 0, 128]
+default_color = "red"
+
+# Default pen thickness in pixels (1.0 - 50.0)
+default_thickness = 3.0
+
+# Default eraser size in pixels (1.0 - 50.0)
+default_eraser_size = 12.0
+
+# Default eraser mode: "brush" (pixel erase) or "stroke" (erase whole stroke)
+default_eraser_mode = "brush"
+
+# How the blur tool obscures its region by default
+# "gaussian"  - softens detail (historical behavior)
+# "pixelate"  - coarse mosaic of averaged blocks; block size follows the tool size
+# "secure"    - collapses the region to one averaged color; no detail survives
+# "black-out" - opaque black fill; needs no captured background
+default_blur_style = "gaussian"
+
+# Default marker opacity multiplier (0.05 - 0.90). Multiplies the current color alpha.
+marker_opacity = 0.32
+
+# Font families the "Cycle Font Family" action steps through (Shift+T).
+# Any installed family name works. An empty list turns the action off.
+# Names are matched without case, so ["Sans", "sans"] loads as one entry.
+# The configurator edits this as a row per font, each picking from the
+# families installed on the machine.
+font_cycle = ["Sans", "Monospace", "Serif"]
+
+# How much a finished freehand or marker stroke is smoothed (0 - 6).
+#
+# 0 keeps the exact path the pointer drew. Higher values clean up the shake of
+# the hand. Smoothing runs when you lift the pen, never while you draw, so the
+# live stroke always sits exactly on the pointer. Neither endpoint ever moves.
+#
+# Also on the toolbar as the "Smoothing" stepper while the Pen or Marker is up.
+# A session remembers the level it was saved at; this is the starting value.
+pen_smoothing = 3
+
+# Default fill state for fill-capable shapes
+default_fill_enabled = false
+
+# Default regular polygon side count (3 - 12)
+polygon_sides = 5
+
+# Default font size for text mode (8.0 - 72.0)
+default_font_size = 32.0
+
+# Hit-test tolerance in pixels (1.0 - 20.0)
+hit_test_tolerance = 6.0
+
+# Number of shapes processed linearly before spatial indexing kicks in
+hit_test_linear_threshold = 400
+
+# Undo history size (10 - 1000)
+undo_stack_limit = 100
+
+# Drag gesture tool mapping (defaults match existing behavior)
+# Allowed values use kebab-case drag-bindable tool names, e.g. "pen",
+# "arrow", "eraser", "triangle", "regular-polygon".
+# Freeform polygon is selectable from the toolbar picker but is not drag-bindable.
+drag_tool = "pen"
+shift_drag_tool = "line"
+ctrl_drag_tool = "rect"
+ctrl_shift_drag_tool = "arrow"
+tab_drag_tool = "ellipse"
+
+# Optional per-mouse-button drag mapping. These override the flat drag_tool
+# fields above when present. Right/middle default to their built-in behavior
+# unless configured here. Use "default" for a button's built-in behavior.
+# Colors are optional and can be names, #RRGGBB or #RRGGBBAA hex strings, or
+# RGB/RGBA arrays.
+#
+# [drawing.drag_tools.left]
+# drag_tool = "pen"
+# shift_drag_tool = "pen"
+# shift_drag_color = "red"
+#
+# [drawing.drag_tools.right]
+# drag_tool = "pen"
+# drag_color = "blue"
+#
+# [drawing.drag_tools.middle]
+# drag_tool = "default"
+
+# ───────────────────────────────────────────────────────────────────────────────
+# Font Configuration (Pango-based text rendering)
+# ───────────────────────────────────────────────────────────────────────────────
+
+# Font family name for text rendering
+# Install fonts system-wide and reference by family name
+# Examples to try:
+#   font_family = "Sans"              # Default sans-serif
+#   font_family = "Monospace"         # Fixed-width font
+#   font_family = "Serif"             # Serif font
+#   font_family = "JetBrains Mono"    # If installed
+#   font_family = "Fira Code"         # If installed
+#   font_family = "Maple Mono NF"     # If installed
+#   font_family = "DejaVu Sans"       # Common on Linux
+#   font_family = "Liberation Sans"   # Common on Linux
+#   font_family = "Noto Sans"         # Google Noto fonts
+# Falls back to "Sans" if the specified font is not available
+font_family = "Sans"
+
+# Font weight: "normal", "bold", "light", "ultralight", "heavy", "ultrabold"
+# Or numeric: 100-900 (400 is regular; 700 renders at a bold weight).
+# The toolbar Bold toggle is checked only for the literal word "bold" and writes
+# "bold" or "normal"; numeric weights such as 700 therefore leave it unchecked.
+# Try different weights:
+#   font_weight = "normal"    # Regular weight
+#   font_weight = "bold"      # Bold (default, best visibility)
+#   font_weight = "light"     # Light weight
+#   font_weight = "600"       # Semi-bold (numeric)
+font_weight = "bold"
+
+# Font style: "normal", "italic", "oblique"
+# Try different styles:
+#   font_style = "normal"     # Standard upright text
+#   font_style = "italic"     # Italic/cursive
+#   font_style = "oblique"    # Slanted text
+font_style = "normal"
+
+# Enable semi-transparent background box behind text for better contrast
+# Set to true if you find text hard to read against complex backgrounds
+# Default: false (no background, cleaner look with just stroke outline)
+text_background_enabled = false
+
+# Draw a contrasting outline around text and text-entry carets.
+# Set to false for plain glyphs without the light/dark halo.
+# Default: true
+text_halo_enabled = true
+
+[presets.slot_3.tool_settings]
+eraser_size = 12.0
+
+[presets.slot_2.tool_settings.blur]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[presets.slot_3.tool_settings.pen]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+# Ordered quick colors used by shortcuts, toolbar swatches, and radial menu.
+# The first eight entries map to R/G/B/Y/O/P/W/K; if fewer are configured by
+# hand, missing shortcut positions use built-in defaults and help-overlay badges
+# follow those shortcut-backed entries. Extra entries have no shortcut action
+# binding. Explicit extra entries appear in toolbar/radial palette UIs, capped
+# to the first 24 rendered colors. Use known color names, #RRGGBB hex (or
+# #RRGGBBAA to carry alpha), or RGB/RGBA arrays. The hex values below are the
+# tuned built-in defaults; named colors ("red", "green", ...) resolve to these
+# same tuned values, so named entries, the default pen color, and board
+# auto-adjust pens all match these swatches.
+#
+# Right-clicking a swatch in the overlay opens the color picker for that slot
+# and saves the accepted color back here as an RGB array, or an RGBA array when
+# the color is translucent, keeping the slot's label and shortcut. Recoloring a
+# slot this file only implies writes the palette out up to that slot, so a
+# palette left out of this file stops tracking future built-in defaults from
+# there on. That picker's "Default" button loads the color shipped for the slot
+# again (built-in slots only), still requiring OK to save.
+[[drawing.quick_colors]]
+label = "Red"
+color = "#F5333F"
+
+[presets.slot_3.tool_settings.line]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[presets.slot_2.tool_settings.marker]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[presets.slot_3.tool_settings.rect]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[[drawing.quick_colors]]
+label = "Green"
+color = "#2EC27E"
+
+[presets.slot_3.tool_settings.ellipse]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[presets.slot_2.tool_settings.step_marker]
+color = [
+    245,
+    51,
+    63,
+]
+size = 19.2
+
+[presets.slot_3.tool_settings.arrow]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[[drawing.quick_colors]]
+label = "Blue"
+color = "#3584E4"
+
+[presets.slot_3.tool_settings.blur]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[presets.slot_2.drag_tools.left]
+drag_tool = "pen"
+shift_drag_tool = "line"
+ctrl_drag_tool = "rect"
+ctrl_shift_drag_tool = "arrow"
+tab_drag_tool = "ellipse"
+
+[presets.slot_3.tool_settings.marker]
+color = [
+    245,
+    51,
+    63,
+]
+size = 3.0
+
+[[drawing.quick_colors]]
+label = "Yellow"
+color = "#F6D32D"
+
+[presets.slot_3.tool_settings.step_marker]
+color = [
+    245,
+    51,
+    63,
+]
+size = 19.2
+
+[presets.slot_2.drag_tools.right]
+drag_tool = "default"
+shift_drag_tool = "default"
+ctrl_drag_tool = "default"
+ctrl_shift_drag_tool = "default"
+tab_drag_tool = "default"
+
+[presets.slot_3.drag_tools.left]
+drag_tool = "pen"
+shift_drag_tool = "line"
+ctrl_drag_tool = "rect"
+ctrl_shift_drag_tool = "arrow"
+tab_drag_tool = "ellipse"
+
+[[drawing.quick_colors]]
+label = "Orange"
+color = "#FF7800"
+
+[presets.slot_3.drag_tools.right]
+drag_tool = "default"
+shift_drag_tool = "default"
+ctrl_drag_tool = "default"
+ctrl_shift_drag_tool = "default"
+tab_drag_tool = "default"
+
+[presets.slot_2.drag_tools.middle]
+drag_tool = "default"
+shift_drag_tool = "default"
+ctrl_drag_tool = "default"
+ctrl_shift_drag_tool = "default"
+tab_drag_tool = "default"
+
+[presets.slot_3.drag_tools.middle]
+drag_tool = "default"
+shift_drag_tool = "default"
+ctrl_drag_tool = "default"
+ctrl_shift_drag_tool = "default"
+tab_drag_tool = "default"
+
+[[drawing.quick_colors]]
+label = "Pink"
+color = "#C061CB"
+
+[[drawing.quick_colors]]
+label = "White"
+color = "#FFFFFF"
+
+[[drawing.quick_colors]]
+label = "Black"
+color = "#241F31"
+
+[[drawing.quick_colors]]
+label = "Cyan"
+color = "#00FFFF"
+
+[[drawing.quick_colors]]
+label = "Purple"
+color = "#9966CC"
+
+[[drawing.quick_colors]]
+label = "Gray"
+color = "#666666"
+
+# Example custom entry:
+# [[drawing.quick_colors]]
+# label = "Blush"
+# color = "#FFB3BA"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PRESET SLOTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[presets]
+# Number of visible preset slots (3-5)
+slot_count = 5
+
+# Each preset requires tool + color + size (thickness or eraser size).
+# Optional fields let you capture fill, marker opacity, font size, etc.
+
+[presets.slot_1]
+# Optional label shown in UI tooltips
+name = "Red pen"
+# Tool: "pen", "line", "rect", "ellipse", "triangle", "parallelogram",
+# "rhombus", "regular-polygon", "freeform-polygon", "arrow", "marker",
+# "highlight", "eraser", "select"
+tool = "pen"
+# Color: name, #RRGGBB or #RRGGBBAA hex string, or RGB/RGBA array
+color = "red"
+# Size: pen thickness or eraser size
+size = 3.0
+# Optional overrides
+marker_opacity = 0.32
+fill_enabled = false
+font_size = 32.0
+text_background_enabled = false
+arrow_length = 20.0
+arrow_angle = 30.0
+arrow_head_at_end = false
+show_status_bar = true
+
+# [presets.slot_2]
+# name = "Blue marker"
+# tool = "marker"
+# color = "blue"
+# size = 8.0
+# marker_opacity = 0.32
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# ARROW SETTINGS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[arrow]
+# Minimum arrowhead length in pixels. The head also scales with stroke width
+# (three times the thickness), so this acts as the floor for thin strokes.
+length = 20.0
+
+# Arrowhead half-angle in degrees (15-60). Smaller is a sharper, narrower head.
+angle_degrees = 26.0
+
+# Place the arrowhead at the end of the line instead of the start
+head_at_end = true
+
+# Shape of the next arrow drawn: "standard", "pointy", "curved", or "double".
+# Every arrow stores its own style, so this only seeds new ones — nothing
+# already drawn is restyled, and the Cycle Arrow Style action changes it at
+# runtime. "double" ignores head_at_end; "curved" starts with a gentle arc you
+# can reshape by dragging the round handle at its midpoint.
+style = "standard"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PERFORMANCE SETTINGS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Spotlight tool: dims the whole overlay except the regions you draw, so
+# attention lands where you point. Select the tool from the toolbar or bind
+# `select_spotlight_tool`.
+[spotlight]
+# Starting magnification for newly drawn spotlights (1.0 - 4.0). Existing
+# spotlights keep their own saved value. The toolbar changes this in 0.25 steps.
+magnification = 1.0
+
+# How strongly the area outside every spotlight is dimmed (0.1 - 0.95)
+dim_opacity = 0.6
+
+# Fraction of each spotlight radius spent fading out at the edge (0.0 - 0.9).
+# 0.0 gives a hard-edged opening.
+feather = 0.35
+
+[performance]
+# Number of buffers for rendering (2, 3, or 4)
+# 2 = double buffering (low memory)
+# 3 = triple buffering (recommended, smooth)
+# 4 = quad buffering (ultra-smooth on high refresh displays)
+buffer_count = 3
+
+# Enable vsync frame synchronization
+# false lowers drawing latency; true prevents tearing and limits rendering to display refresh rate
+enable_vsync = false
+
+# Max FPS when VSync is disabled (0 = unlimited)
+# 120 keeps pen latency low without uncapped CPU usage; set to 0 only for profiling
+max_fps_no_vsync = 120
+
+# UI animation frame rate (0-240; 0 = unlimited)
+# Higher values smooth UI effects at the cost of more redraws
+ui_animation_fps = 30
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# HISTORY / STEP UNDO SETTINGS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[history]
+# Delay in milliseconds between steps for undo-all (50 - 5000)
+undo_all_delay_ms = 1000
+
+# Delay in milliseconds between steps for redo-all (50 - 5000)
+redo_all_delay_ms = 1000
+
+# Show the custom step undo/redo section in the toolbar
+custom_section_enabled = false
+
+# Delay in milliseconds between steps for custom undo (50 - 5000)
+custom_undo_delay_ms = 1000
+
+# Delay in milliseconds between steps for custom redo (50 - 5000)
+custom_redo_delay_ms = 1000
+
+# Number of steps to run for custom undo/redo (1 - 500)
+custom_undo_steps = 5
+custom_redo_steps = 5
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TABLET / STYLUS INPUT (Wayland tablet-unstable-v2)
+# Build with `--features tablet-input` to use
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[tablet]
+# Enable tablet/stylus input at runtime (set false to opt out)
+enabled = true
+
+# Map pressure to thickness for pressure-sensitive freehand Pen strokes.
+# Marker/Textmarker, Step Marker, and shape tools keep their selected sizes.
+pressure_enabled = true
+
+# Freehand Pen thickness range for pressure mapping
+min_thickness = 1.0
+max_thickness = 8.0
+
+# Automatically switch to eraser when physical eraser is detected
+auto_eraser_switch = true
+
+# Threshold (in pixels) before saving a stroke as pressure-sensitive
+pressure_variation_threshold = 0.1
+
+# How thickness edits apply to pressure strokes: disabled, add, scale
+pressure_thickness_edit_mode = "disabled"
+
+# When to show thickness entry for pressure strokes: never, pressure_only, any_pressure
+pressure_thickness_entry_mode = "pressure_only"
+
+# Per-step scale factor when using scale mode (0.1 = +/-10%)
+pressure_thickness_scale_step = 0.1
+
+# Barrel button bindings.
+#
+# Each button can trigger a keybinding action on press (e.g. "toggle_radial_menu").
+# Omit action to ignore the button.
+# Prefer StylusPrimary / StylusSecondary under [keybindings]; these tablet
+# nodes keep working until you move them in the configurator.
+# Eraser switching is handled automatically via the physical tool type
+# (controlled by auto_eraser_switch above), not via barrel buttons.
+
+# Primary barrel button (BTN_STYLUS / button 331): open tool wheel
+[tablet.stylus_button]
+action = "toggle_radial_menu"
+
+# Secondary barrel button (BTN_STYLUS2 / button 332): unbound
+[tablet.stylus_button2]
+# action = "undo"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CAPTURE SETTINGS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[capture]
+# Enable screenshot shortcuts (set to false to disable all capture actions)
+enabled = true
+
+# Directory where PNG files are saved (supports ~ expansion)
+save_directory = "~/Pictures/Wayscriber"
+
+# Filename template (strftime-like subset: %Y, %m, %d, %H, %M, %S).
+# Must be a single file name, not a path.
+filename_template = "screenshot_%Y-%m-%d_%H%M%S"
+
+# Image format for saved screenshots: png, jpg, or jpeg
+format = "png"
+
+# Copy screenshots to clipboard by default. Image writes smaller than 64 MiB
+# are read back and retried once unless the PNG bytes match; larger writes
+# trust wl-copy.
+# Shortcut-specific actions may override this.
+copy_to_clipboard = true
+
+# Composite the active board's committed annotations into full-screen and
+# region screenshots. Set to false for raw desktop pixels by default; the
+# interactive region Review toggle can still override this per capture.
+include_drawings = true
+
+# Exit overlay after any capture completes (forces exit for all capture types)
+# When false, clipboard-only captures still auto-exit by default.
+# Use --no-exit-after-capture to keep the overlay open for a run.
+exit_after_capture = false
+
+# Languages used by "Copy text from screen" (OCR), in Tesseract's
+# plus-separated form, for example "eng" or "eng+deu". The matching Tesseract
+# language packages must be installed. OCR also needs `enabled = true` above.
+ocr_languages = "eng"
+
+[capture.region]
+# "native" draws Wayscriber's picker over a frozen desktop image.
+# "slurp" keeps the external selector. Native falls back to slurp when no
+# screen capture backend is available.
+# Native region selections are encoded and named as PNG. The explicit "slurp"
+# picker keeps [capture].format for compatibility with the legacy grim path.
+# On Hyprland and Sway, native selection also offers Space-triggered window
+# snapping for visible windows on the active output and workspace when the
+# picker creates a fresh auto-freeze (not when reusing an older Freeze/Zoom).
+# Candidates reflect the workspace visible when the compositor query runs.
+picker = "native"
+
+# Pointer-side readout: position while idle, W x H in export pixels while dragging.
+show_size_readout = true
+
+# Magnified pixel loupe next to the pointer while dragging.
+show_loupe = false
+
+# Short hotkey legend at the top centre until the first drag.
+show_legend = true
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# EXPORT SETTINGS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[export.pdf]
+# Optional PDF filename template. Leave unset or blank to reuse [capture].filename_template.
+# filename_template = "board_%Y-%m-%d_%H%M%S"
+# Optional all-board PDF filename template. Falls back to filename_template, then [capture].
+# all_boards_filename_template = "boards_%Y-%m-%d_%H%M%S"
+
+# page_size: "viewport", "a4", "letter", or "custom"
+page_size = "viewport"
+# orientation: "auto", "portrait", or "landscape"
+orientation = "auto"
+# fit: "viewport", "fit-viewport-to-page", or "fit-content-to-page"
+fit = "viewport"
+# transparent_background: "none" keeps transparent PDF pages blank; "desktop" captures
+# the live desktop after hiding the overlay and places it behind transparent pages.
+transparent_background = "none"
+# Used only when page_size = "custom" (PDF points)
+custom_width = 800.0
+custom_height = 600.0
+# Source-coordinate padding around content when fit = "fit-content-to-page"
+content_source_padding = 24.0
+
+[export.pdf.labels]
+enabled = false
+# position: "top-left", "top-right", "bottom-left", "bottom-right", or "bottom-center"
+position = "bottom-center"
+# content: "custom-template", "board-and-page", "document-page", "board-name", or "page-name"
+content = "custom-template"
+template = "{board_name} - {page_name} ({document_page}/{document_pages})"
+font_family = "Sans"
+font_size = 10.0
+margin = 12.0
+padding_x = 6.0
+padding_y = 3.0
+text_color = [0.1, 0.1, 0.1, 1.0]
+background_enabled = true
+background_color = [1.0, 1.0, 1.0, 0.85]
