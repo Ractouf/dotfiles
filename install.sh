@@ -68,16 +68,7 @@ link_configs() {
 }
 
 setup_system() {
-    local theme=/usr/share/sddm/themes/sugar-candy
-    sudo install -Dm644 "$DOTFILES/sddm/theme.conf.user" "$theme/theme.conf.user"
-    sudo install -Dm644 "$DOTFILES/hypr/wallpaper.jpg" "$theme/Backgrounds/wallpaper.jpg"
-    sudo install -Dm644 /dev/stdin /etc/sddm.conf.d/theme.conf <<'EOF'
-[Theme]
-Current=sugar-candy
-
-[General]
-Numlock=on
-EOF
+    "$DOTFILES/sddm/apply.sh"
     sudo systemctl enable sddm.service bluetooth.service NetworkManager.service
 }
 
