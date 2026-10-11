@@ -1,11 +1,19 @@
 #!/bin/bash
 # Live preview of an SDDM theme: opens the greeter in test mode and reopens it on every save.
-# Usage: preview.sh [theme-dir]   (default: sddm/sugar-candy)
+# Usage: preview.sh [name|dir]   (default: the theme named in sddm/current)
+#   name: a folder in sddm/ or an entry in sddm/themes.conf
+#   dir:  any theme folder
 # Ctrl+C to stop.
 set -u
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-THEME="$(realpath "${1:-$DIR/sugar-candy}")"
+source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
+
+arg="${1:-$(current_theme)}"
+if [[ -d "$arg" && "$arg" == */* ]]; then
+    THEME="$(realpath "$arg")"
+else
+    THEME="$(theme_dir "$arg")" || exit 1
+fi
 
 [[ -f "$THEME/metadata.desktop" ]] || { echo "Not an SDDM theme: $THEME" >&2; exit 1; }
 
@@ -14,9 +22,9 @@ greeter=sddm-greeter
 grep -qE '^QtVersion=6' "$THEME/metadata.desktop" && greeter=sddm-greeter-qt6
 
 # Our theme shows the current Hyprland wallpaper (git-ignored link)
-if [[ "$THEME" == "$DIR/sugar-candy" ]]; then
-    wallpaper="$DIR/../hypr/wallpaper.jpg"
-    [[ -e "$wallpaper" ]] || wallpaper="$DIR/../hypr/wallpaper.template.jpg"
+if [[ "$THEME" == "$SDDM_DIR/sugar-candy" ]]; then
+    wallpaper="$SDDM_DIR/../hypr/wallpaper.jpg"
+    [[ -e "$wallpaper" ]] || wallpaper="$SDDM_DIR/../hypr/wallpaper.template.jpg"
     ln -sfn "$(realpath "$wallpaper")" "$THEME/Backgrounds/wallpaper.jpg"
 fi
 
@@ -30,7 +38,7 @@ stop() {
     pid=""
 }
 stamp() {
-    find "$THEME" -type f -printf '%T@ %p\n' | sort | md5sum
+    find "$THEME" -path '*/.git' -prune -o -type f -printf '%T@ %p\n' | sort | md5sum
 }
 trap 'stop; exit' INT TERM
 
