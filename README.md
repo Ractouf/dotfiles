@@ -41,6 +41,7 @@ The login screen theme lives in `sddm/sugar-candy/` (a fork of [Sugar Candy](htt
 
 ```sh
 sddm/preview.sh   # opens the greeter in test mode, reloads on every save
+sddm/preview.sh ~/some-theme   # preview any other theme folder (Qt5 or Qt6)
 sddm/apply.sh     # installs it as the system theme (sudo), active at next login
 ```
 

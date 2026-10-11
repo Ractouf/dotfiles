@@ -1,19 +1,28 @@
 #!/bin/bash
-# Live preview of the SDDM theme: opens the greeter in test mode and reopens it on every save.
+# Live preview of an SDDM theme: opens the greeter in test mode and reopens it on every save.
+# Usage: preview.sh [theme-dir]   (default: sddm/sugar-candy)
 # Ctrl+C to stop.
 set -u
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-THEME="$DIR/sugar-candy"
+THEME="$(realpath "${1:-$DIR/sugar-candy}")"
 
-# Show the current Hyprland wallpaper (git-ignored link)
-wallpaper="$DIR/../hypr/wallpaper.jpg"
-[[ -e "$wallpaper" ]] || wallpaper="$DIR/../hypr/wallpaper.template.jpg"
-ln -sfn "$(realpath "$wallpaper")" "$THEME/Backgrounds/wallpaper.jpg"
+[[ -f "$THEME/metadata.desktop" ]] || { echo "Not an SDDM theme: $THEME" >&2; exit 1; }
+
+# Qt6 themes declare QtVersion=6 and need the Qt6 greeter
+greeter=sddm-greeter
+grep -qE '^QtVersion=6' "$THEME/metadata.desktop" && greeter=sddm-greeter-qt6
+
+# Our theme shows the current Hyprland wallpaper (git-ignored link)
+if [[ "$THEME" == "$DIR/sugar-candy" ]]; then
+    wallpaper="$DIR/../hypr/wallpaper.jpg"
+    [[ -e "$wallpaper" ]] || wallpaper="$DIR/../hypr/wallpaper.template.jpg"
+    ln -sfn "$(realpath "$wallpaper")" "$THEME/Backgrounds/wallpaper.jpg"
+fi
 
 pid=""
 start() {
-    sddm-greeter --test-mode --theme "$THEME" &
+    "$greeter" --test-mode --theme "$THEME" &
     pid=$!
 }
 stop() {
@@ -27,7 +36,7 @@ trap 'stop; exit' INT TERM
 
 start
 last="$(stamp)"
-echo "Previewing $THEME, edit any file to reload (Ctrl+C to quit)"
+echo "Previewing $THEME with $greeter, edit any file to reload (Ctrl+C to quit)"
 
 while sleep 0.5; do
     now="$(stamp)"
