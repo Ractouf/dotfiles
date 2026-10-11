@@ -21,13 +21,6 @@ fi
 greeter=sddm-greeter
 grep -qE '^QtVersion=6' "$THEME/metadata.desktop" && greeter=sddm-greeter-qt6
 
-# Our theme shows the current Hyprland wallpaper (git-ignored link)
-if [[ "$THEME" == "$SDDM_DIR/sugar-candy" ]]; then
-    wallpaper="$SDDM_DIR/../hypr/wallpaper.jpg"
-    [[ -e "$wallpaper" ]] || wallpaper="$SDDM_DIR/../hypr/wallpaper.template.jpg"
-    ln -sfn "$(realpath "$wallpaper")" "$THEME/Backgrounds/wallpaper.jpg"
-fi
-
 pid=""
 start() {
     "$greeter" --test-mode --theme "$THEME" &

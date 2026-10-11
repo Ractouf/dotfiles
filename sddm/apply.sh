@@ -13,14 +13,6 @@ sudo rm -rf "$DEST"
 sudo cp -r "$SRC" "$DEST"
 sudo rm -rf "$DEST/.git"
 
-# Our theme shows the Hyprland wallpaper
-if [[ "$NAME" == sugar-candy ]]; then
-    wallpaper="$SDDM_DIR/../hypr/wallpaper.jpg"
-    [[ -e "$wallpaper" ]] || wallpaper="$SDDM_DIR/../hypr/wallpaper.template.jpg"
-    sudo rm -f "$DEST/Backgrounds/wallpaper.jpg"  # preview.sh link into $HOME
-    sudo install -Dm644 "$wallpaper" "$DEST/Backgrounds/wallpaper.jpg"
-fi
-
 sudo install -Dm644 /dev/stdin /etc/sddm.conf.d/10-theme.conf <<EOF
 [Theme]
 Current=$NAME

@@ -84,4 +84,4 @@ echo
 echo "Done. Before rebooting, check hypr/hyprland.lua for machine-specific settings:"
 echo "  - monitor names/modes (run 'hyprctl monitors' once logged in)"
 echo "  - LIBVA_DRIVER_NAME=nvidia (remove on non-NVIDIA machines)"
-echo "Replace ~/.config/hypr/wallpaper.jpg with your own image (re-run without --link-only to update SDDM)."
+echo "Replace ~/.config/hypr/wallpaper.jpg with your own image."

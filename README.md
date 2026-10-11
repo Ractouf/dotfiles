@@ -1,6 +1,6 @@
 # dotfiles
 
-Arch Linux + Hyprland desktop: Hyprland (Lua config), Waybar, Wofi, SwayNC, Kitty, swaylock-effects, wlogout, SDDM (Sugar Candy), fastfetch + starship.
+Arch Linux + Hyprland desktop: Hyprland (Lua config), Waybar, Wofi, SwayNC, Kitty, swaylock-effects, wlogout, SDDM (MineSDDM), fastfetch + starship.
 
 ## Install
 
@@ -33,7 +33,7 @@ Check `hypr/hyprland.lua` before the first login:
 
 ## Wallpaper
 
-`install.sh` seeds `hypr/wallpaper.jpg` from `hypr/wallpaper.template.jpg`. Replace it with your own image; it is git-ignored, so it stays local. It is used by Hyprland (via awww) and copied to the SDDM login screen when `install.sh` runs without `--link-only`.
+`install.sh` seeds `hypr/wallpaper.jpg` from `hypr/wallpaper.template.jpg`. Replace it with your own image; it is git-ignored, so it stays local. It is used by Hyprland (via awww).
 
 ## SDDM theme
 
@@ -41,7 +41,7 @@ Check `hypr/hyprland.lua` before the first login:
 
 Themes come from two places:
 
-- **Folders in `sddm/`**: themes kept in this repo, e.g. `sddm/sugar-candy/` (a fork of [Sugar Candy](https://framagit.org/MarianArlt/sddm-sugar-candy), GPL-3.0)
+- **Folders in `sddm/`**: themes kept in this repo (put a theme folder with a `metadata.desktop` there)
 - **`sddm/themes.conf`**: other people's themes, cloned on demand into `~/.cache/dotfiles/sddm/<name>` (and updated on each use) instead of copied here, e.g. [MineSDDM](https://github.com/Davi-S/sddm-theme-minesddm)
 
 ```sh

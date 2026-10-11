@@ -46,10 +46,8 @@ blueman
 networkmanager
 network-manager-applet
 
-# Login manager (+ sugar-candy theme deps)
+# Login manager
 sddm
-qt5-graphicaleffects
-qt5-quickcontrols2
 
 # Shell
 starship
