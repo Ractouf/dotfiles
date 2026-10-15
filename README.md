@@ -1,5 +1,7 @@
 # dotfiles
 
+The config of my Linux desktop, plus a script that sets it all up on a fresh install.
+
 Arch Linux + Hyprland desktop: Hyprland (Lua config), Waybar, Wofi, SwayNC, Kitty, swaylock-effects, wlogout, SDDM (MineSDDM), fastfetch + starship.
 
 ## Install
